@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ChooseSensorFragment" >
+
+    <Button
+        android:id="@+id/btn_finger_print"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/finger_print" />
+
+    <Button
+        android:id="@+id/btn_accelarator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/accelerator" />
+
+    <Button
+        android:id="@+id/btn_gyroscope"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/gyroscope" />
+</LinearLayout>
