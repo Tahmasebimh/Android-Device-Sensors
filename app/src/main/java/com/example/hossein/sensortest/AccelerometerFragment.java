@@ -6,7 +6,10 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +22,8 @@ import android.widget.TextView;
  */
 public class AccelerometerFragment extends Fragment implements SensorEventListener {
 
+
+    private Vibrator mVibrator;
 
     public AccelerometerFragment() {
         // Required empty public constructor
@@ -52,6 +57,8 @@ public class AccelerometerFragment extends Fragment implements SensorEventListen
         senSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         senSensorManager.registerListener(this , senAccelerometer , SensorManager.SENSOR_DELAY_NORMAL);
+        mVibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+
 
         return view;
     }
@@ -61,13 +68,21 @@ public class AccelerometerFragment extends Fragment implements SensorEventListen
         Sensor mySensor = event.sensor;
 
         if(mySensor.getType() == Sensor.TYPE_ACCELEROMETER){
-            float x = event.values[0];
-            float y = event.values[1];
-            float z = event.values[2];
+            float xAxis = event.values[0];
+            float yAxis = event.values[1];
+            float zAxis = event.values[2];
+            String x = String.format( "%.2f", xAxis);
+            String y = String.format( "%.2f", yAxis);
+            String z = String.format( "%.2f", zAxis);
 
             mTextViewXAxis.setText(x + "");
             mTextViewYAxis.setText(y + "");
             mTextViewZAxis.setText(z + "");
+            if(xAxis > 5){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    mVibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                }
+            }
         }
     }
 

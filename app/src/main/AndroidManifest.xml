@@ -3,6 +3,7 @@
     package="com.example.hossein.sensortest">
 
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-feature
         android:name="android.hardware.sensor.proximity"
         android:required="true" />

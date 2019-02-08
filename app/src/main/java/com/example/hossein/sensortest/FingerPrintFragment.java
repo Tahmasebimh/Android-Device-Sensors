@@ -89,7 +89,7 @@ public class FingerPrintFragment extends Fragment {
                         Log.i("<><><><>" , "init cipher");
                         FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(mCipher);
                         CancellationSignal cancellationSignal = new CancellationSignal();
-                        fingerprintManager.authenticate(cryptoObject, cancellationSignal, 0, new FingerprintManager.AuthenticationCallback() {
+                        fingerprintManager.authenticate(null, cancellationSignal, 0, new FingerprintManager.AuthenticationCallback() {
                             @Override
                             public void onAuthenticationError(int errorCode, CharSequence errString) {
                                 Toast.makeText(getActivity(), errString.toString() , Toast.LENGTH_SHORT).show();
